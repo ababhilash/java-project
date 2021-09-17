@@ -1,0 +1,9 @@
+node {
+    stage ('SCM chkout-1'){
+        git branch: 'main', credentialsId: 'eaa20335-f521-49b6-a1ac-b635d8a83440', url: 'https://github.com/ababhilash/java-project'
+    }
+    stage ('Execute Java') {
+        sh 'javac sample_code.java'
+        sh 'java Simple'
+    }
+}
