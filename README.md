@@ -1,6 +1,6 @@
 # java-project
 ### 1) Write a sample Hello world docker file and run it.
-### 2) Integrate it with the Jenkinspipeline.
+### 2) Integrate it with the Jenkins pipeline.
 ### 3) Call the python script to print the contents of yaml from the pipeline.
 
 
