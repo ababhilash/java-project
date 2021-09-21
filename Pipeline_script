@@ -1,9 +1,27 @@
-node {
-    stage ('SCM chkout-1'){
-        git branch: 'main', credentialsId: 'eaa20335-f521-49b6-a1ac-b635d8a83440', url: 'https://github.com/ababhilash/java-project'
-    }
-    stage ('Execute Java') {
-        sh 'javac sample_code.java'
-        sh 'java Simple'
+pipeline {
+    agent any
+    stages{
+        stage ('SCM chkout-1'){
+            steps{
+                git branch: 'main', credentialsId: 'f9bed3e5-55cb-4c5f-a426-5c61c4e602c6', url: 'https://github.com/ababhilash/java-project/'
+            }
+        }
+        stage ('Execute Java') {
+            steps{
+                sh 'javac sample_code.java'
+                sh 'java Simple'
+            }    
+        }
+        stage ("Build and run the Docker Image") {
+            steps{
+                sh "sudo docker build . -t hello-world"
+                sh "sudo docker run hello-world"
+            }    
+        }
+        stage ("Print the contents of yaml file") {
+            steps{
+                sh "python3 task.py"
+            }    
+        }    
     }
 }
